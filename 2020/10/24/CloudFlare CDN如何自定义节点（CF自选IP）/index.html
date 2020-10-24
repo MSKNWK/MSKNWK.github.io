@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="cn_zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CloudFlare CDN如何自定义节点（CF自选IP） | 天翔的静态博客</title><script src="https://cdn.bootcss.com/valine/1.4.4/Valine.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css"><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="天翔的静态博客" type="application/atom+xml">
+</head><body><header><nav><a href="/">Home</a><a href="/archives/">Archives</a></nav></header><main><article><div id="post-bg"><div id="post-title"><div id="post-info"><span>date:<time datetime="2020-10-24T03:40:00.000Z" id="date"> 2020-10-24</time></span><br><span>updated:<time datetime="2020-10-24T03:58:16.004Z" id="updated"> 2020-10-24</time></span></div><h1>CloudFlare CDN如何自定义节点（CF自选IP）</h1><hr></div><div id="post-content"><p><strong>CF官网 ：<a target="_blank" rel="noopener" href="http://www.cloudflare.com/">www.cloudflare.com</a></strong></p>
+<p><strong>笨牛：<a target="_blank" rel="noopener" href="http://cdn.bnxb.com/">cdn.bnxb.com</a> （这是合作者，由于官网是英文有些人可能 看不懂，所以建议使用）</strong></p>
+<p><strong>DNS智能解析：<a target="_blank" rel="noopener" href="http://www.dnspod.cn/">www.dnspod.cn</a> （这里使用的是DNSPOD,你们也可以使用其它的）</strong></p>
+<p><strong>CF的百度云合作ip</strong><br><strong>162.159.208.4-162.159.208.103</strong><br><strong>162.159.209.4-162.159.209.103</strong><br><strong>162.159.210.4-162.159.210.103</strong><br><strong>162.159.211.4-162.159.211.103</strong></p>
+<p><strong>操作过程以图片为主</strong></p>
+<p><strong>打开笨牛：域名接入——添加域名——选择DNS接入——进入主要设置（此时解析并未生效）</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea3f0aa3a.jpg" alt="1.jpg" title="5eeeea3f0aa3a.jpg"></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea433c1a8.jpg" alt="2.jpg" title="5eeeea433c1a8.jpg"></p>
+<p><strong>将接入方式改为<a target="_blank" rel="noopener" href="https://zhujila.cn/">CNAME</a>，发现激活成功</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea378dfc2.jpg" alt="3.jpg" title="5eeeea378dfc2.jpg"></p>
+<p><strong>进入解析管理将类型改为A，回源地址填写自己服务器IP地址</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea23ddf8c.jpg" alt="4.jpg" title="5eeeea23ddf8c.jpg"></p>
+<p><strong>打开[<a target="_blank" rel="noopener" href="http://www.dnspod.cn/">DNSPOD智能解析</a>]</strong></p>
+<p><strong>添加域名——域名管理</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea23ddf8c.jpg" alt="5.jpg" title="5eeeea23ddf8c.jpg"></p>
+<p><strong>回到笨牛解析设置处找到A纪录的值</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea16b9549.jpg" alt="6.jpg" title="5eeeea16b9549.jpg"></p>
+<p><strong>在<a target="_blank" rel="noopener" href="http://www.dnspod.cn/">DNSPOD</a>域名解析处添加纪录（类型为A）笨牛的两个A值都要加入</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea0f16381.jpg" alt="8.jpg" title="5eeeea0f16381.jpg"></p>
+<p><strong>进入测试后发现配置正确</strong></p>
+<p><img src="https://e.zhujila.cn/Uploads/2020-06-21/5eeeea080f0d5.jpg" alt="9.jpg" title="5eeeea080f0d5.jpg"></p>
+<p><strong>进入<a target="_blank" rel="noopener" href="http://www.cloudflare.com/">[Cloudfare]</a>申请SSL证书（想必这步大家都会就不发图了，不会的可以博客留言）</strong></p>
+<p><strong>SSL配置OK后就可以进行自选IP了，IP可以用上面给的百度云节点</strong></p>
+<p><strong>回到<a target="_blank" rel="noopener" href="http://www.dnspod.cn/">DNSPOD</a> 疯狂的添加IP吧，骚年！！！！</strong></p>
+<p><strong>DNSPOD生效需要一定的时间，请耐心等待</strong></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://e.zhujila.cn/news/content/1.html">https://e.zhujila.cn/news/content/1.html</a></p>
+<div id="paginator"></div></div><div id="post-footer"><hr><a href="/2020/10/24/%E6%B4%9B%E5%9C%84%E7%BD%91%E7%BB%9C10-18%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/">← Prev 洛圄网络10-18更新日志</a><span style="color: #fe2"> | </span><a href="/2020/10/24/%E6%8D%AE%E4%B8%AA%E4%BA%BA%E6%84%9F%E5%8F%97%E7%AE%80%E8%AF%84%E5%B0%8F%E6%A0%97%E5%AD%90QBot%E6%A1%86%E6%9E%B6/">据个人感受简评小栗子QBot框架 Next →</a><hr></div><div id="bottom-btn"><a id="to-top" href="#post-title" title="to top">∧</a></div><details id="reward"><summary>打赏</summary><div id="alipay"><span>支付宝 | Alipay</span><br><img src="/img/Alipay.png"></div><div id="wechat"><span>微信 | WeChat</span><br><img src="/img/WeChat.png"></div></details><div id="Valine"></div><script>new Valine({
+ el: '#Valine'
+ , appId: ''
+ , appKey: ''
+ , placeholder: '此条评论委托企鹅物流发送'
+})</script></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/"> Dr.TARS_TNXG</a></h1><section id="total"><a id="total-archives" href="/archives"><span class="total-title">Archives Total:</span><span class="total-number">5</span></a><div id="total-tags"><span class="total-title">Tags:</span><span class="total-number">0</span></div><div id="total-categories"><span class="total-title">Categories:</span><span class="total-number">0</span></div></section></div><div id="aside-block"></div><footer><nobr><span class="text-title">©</span><span class="text-content">2019-2020 MisakaNetwork</span></nobr><wbr><nobr><span class="text-title">签名</span><span class="text-content">我们的心就像那天空一样，永不分离。</span></nobr><wbr><wbr><nobr>published with&nbsp;<a target="_blank" rel="noopener" href="http://hexo.io">Hexo&nbsp;</a></nobr><wbr><nobr>Theme&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknight&nbsp;</a></nobr><wbr><nobr>by&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/arknights.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script></body></html>
